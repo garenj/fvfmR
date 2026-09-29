@@ -1,22 +1,23 @@
-Package: fvfm
+Package: fvfmR
 Type: Package
-Title: FvFm Leaf Disc Fluorescence Analysis Pipeline
-Version: 0.1.0
+Title: FvFm Leaf Disc Fluorescence Analysis from R
+Version: 0.2.0
 Authors@R: c(
     person("Josef", "Garen", role = "aut"),
     person("Pieter", "Arnold", role = c("aut", "cre"),
-           email = "piet.arnold@gmail.com")
+           email = "pieter.arnold@anu.edu.au"),
+    person("Kristine", "Crous", role = "aut")
   )
-Description: R wrapper around a Python pipeline for semi-automated analysis of
-    leaf disc fluorescence images from a Walz ImagingPAM fluorometer. Computes
-    Fv/Fm = (Fm - Fo) / Fm for each leaf disc and exports results to CSV.
-    All image processing and GUI interactions are handled by the bundled Python
-    backend (OpenCV, scikit-image). The user interacts via native GUI windows
-    that appear alongside RStudio.
+Description: R wrapper around the 'fvfmPy' Python package for semi-automated
+    analysis of leaf disc fluorescence images from a Walz ImagingPAM
+    fluorometer. Computes Fv/Fm = (Fm - Fo) / Fm for each leaf disc and returns
+    the results as a data frame. The interactive 'fvfmPy' window is launched
+    from R and the logged observations are returned to R when it is closed.
 License: MIT + file LICENSE
+URL: https://github.com/garenj/fvfmR, https://github.com/garenj/fvfmPy
 Encoding: UTF-8
 Imports:
-    reticulate
-Suggests:
-    remotes
-SystemRequirements: Python (>= 3.9)
+    reticulate,
+    utils
+SystemRequirements: Python (>= 3.10), fvfmPy (>= 1.0.3)
+Config/roxygen2/version: 8.0.0
