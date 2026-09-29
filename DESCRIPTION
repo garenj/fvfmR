@@ -1,23 +1,29 @@
 Package: fvfmR
 Type: Package
-Title: FvFm Leaf Disc Fluorescence Analysis from R
-Version: 0.2.0
+Title: Chlorophyll Fluorescence (Fv/Fm) Analysis of Leaf Disc Images
+Version: 1.0.0
 Authors@R: c(
-    person("Josef", "Garen", role = "aut"),
-    person("Pieter", "Arnold", role = c("aut", "cre"),
+    person("Josef", "Garen", role = c("aut", "cph")),
+    person("Pieter", "Arnold", role = c("aut", "cre", "cph"),
            email = "pieter.arnold@anu.edu.au"),
-    person("Kristine", "Crous", role = "aut")
+    person("Kristine", "Crous", role = c("aut", "cph"))
   )
-Description: R wrapper around the 'fvfmPy' Python package for semi-automated
-    analysis of leaf disc fluorescence images from a Walz ImagingPAM
-    fluorometer. Computes Fv/Fm = (Fm - Fo) / Fm for each leaf disc and returns
-    the results as a data frame. The interactive 'fvfmPy' window is launched
-    from R and the logged observations are returned to R when it is closed.
+Description: Semi-automated analysis of chlorophyll fluorescence images of
+    leaf discs taken with a 'Walz' 'IMAGING-PAM' fluorometer. Provides an R
+    interface to the 'fvfmPy' 'Python' package, which detects leaf discs,
+    assigns them to a grid of rows and columns, and computes the maximum
+    quantum efficiency of photosystem II, Fv/Fm = (Fm - Fo) / Fm, for each
+    disc. The interactive 'fvfmPy' window is launched from R and the results
+    are returned to R as a data frame.
 License: MIT + file LICENSE
 URL: https://github.com/garenj/fvfmR, https://github.com/garenj/fvfmPy
+BugReports: https://github.com/garenj/fvfmR/issues
 Encoding: UTF-8
 Imports:
     reticulate,
     utils
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 SystemRequirements: Python (>= 3.10), fvfmPy (>= 1.0.3)
 Config/roxygen2/version: 8.0.0

@@ -4,7 +4,7 @@
 \alias{fvfm_setup}
 \title{Set up the Python environment for the fvfmR package}
 \usage{
-fvfm_setup(python = NULL, source = NULL)
+fvfm_setup(python = NULL, source = NULL, ask = interactive())
 }
 \arguments{
 \item{python}{Path to a Python 3.10+ executable used to create the virtual
@@ -14,15 +14,21 @@ system.}
 \item{source}{Optional path to a local fvfmPy source (\code{.tar.gz}) or
 wheel (\code{.whl}) file. \code{NULL} (default) installs the latest
 version from TestPyPI.}
+
+\item{ask}{Logical. Ask for confirmation before creating or modifying the
+Python environment? Default: \code{TRUE} in interactive sessions.}
 }
 \value{
-Invisible path to the environment's Python executable.
+Invisible path to the environment's Python executable, or
+  \code{NULL} if setup was cancelled.
 }
 \description{
 Creates a dedicated virtual environment called \code{fvfm-env} and installs
 the \href{https://github.com/garenj/fvfmPy}{fvfmPy} Python package and its
 dependencies into it. Run this once after installing the package, or again
-to update fvfmPy.
+to update fvfmPy. The environment is created in reticulate's virtualenv
+folder (see \code{\link[reticulate]{virtualenv_root}}) and needs about
+1.5 GB of disk space.
 }
 \details{
 By default fvfmPy is installed from TestPyPI, and its dependencies from
