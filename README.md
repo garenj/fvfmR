@@ -1,5 +1,9 @@
 # fvfmR: fvfmPy from R
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/garenj/fvfmR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/garenj/fvfmR/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 An R wrapper for [fvfmPy](https://github.com/garenj/fvfmPy), which does semi-automated analysis of leaf disc fluorescence images from a Walz ImagingPAM. It computes **Fv/Fm = (Fm − Fo) / Fm** for each leaf disc.
 
 ## Install
