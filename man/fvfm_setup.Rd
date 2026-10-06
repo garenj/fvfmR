@@ -13,7 +13,7 @@ system.}
 
 \item{source}{Optional path to a local fvfmPy source (\code{.tar.gz}) or
 wheel (\code{.whl}) file. \code{NULL} (default) installs the latest
-version from TestPyPI.}
+release from PyPI.}
 
 \item{ask}{Logical. Ask for confirmation before creating or modifying the
 Python environment? Default: \code{TRUE} in interactive sessions.}
@@ -31,9 +31,10 @@ folder (see \code{\link[reticulate]{virtualenv_root}}) and needs about
 1.5 GB of disk space.
 }
 \details{
-By default fvfmPy is installed from TestPyPI, and its dependencies from
-PyPI. Use \code{source} to install from a downloaded \code{.tar.gz} or
-\code{.whl} file instead.
+By default the latest release of fvfmPy is installed from PyPI. Use
+\code{source} to install from a downloaded \code{.tar.gz} or \code{.whl}
+file instead. Running \code{fvfm_setup()} again updates fvfmPy to the
+latest release.
 
 If you already have a Python environment with fvfmPy installed, you can skip
 this step and point the package at it with
@@ -42,6 +43,6 @@ this step and point the package at it with
 \examples{
 \dontrun{
 fvfm_setup()
-fvfm_setup(source = "~/Downloads/fvfmpy-1.0.3.tar.gz")
+fvfm_setup(source = "~/Downloads/fvfmpy-1.0.0.tar.gz")
 }
 }

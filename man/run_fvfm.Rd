@@ -4,10 +4,11 @@
 \alias{run_fvfm}
 \title{Run the fvfmPy leaf disc analysis GUI}
 \usage{
-run_fvfm(directory, output = NULL, overwrite = FALSE, python = NULL)
+run_fvfm(directory = NULL, output = NULL, overwrite = FALSE, python = NULL)
 }
 \arguments{
-\item{directory}{Path to the folder containing the images.}
+\item{directory}{Optional path to the folder containing the images.
+\code{NULL} (default) opens the window without a folder.}
 
 \item{output}{Optional path to a CSV file to write the results to.}
 
@@ -24,8 +25,9 @@ Invisibly, a data frame with one row per leaf disc and columns
   \code{FvFm}; or \code{NULL} if no images were analysed.
 }
 \description{
-Opens the fvfmPy window on a folder of \code{.pim}, \code{.tif} or
-\code{.tiff} images from a Walz ImagingPAM. Use the window to check the
+Opens the fvfmPy window, either on a folder of \code{.pim}, \code{.tif} or
+\code{.tiff} images from a Walz ImagingPAM or with no folder open (choose
+one with the \emph{Open folder} button). Use the window to check the
 detected leaf discs, adjust rotation, cropping, rows/columns and
 segmentation settings, and press \emph{Analyze} (or Enter) to log each image.
 See the \href{https://github.com/garenj/fvfmPy}{fvfmPy User's Guide} for
@@ -42,6 +44,7 @@ crash your R session.
 }
 \examples{
 \dontrun{
+results <- run_fvfm()   # choose a folder in the window
 results <- run_fvfm("~/Dropbox/Experiment1/images")
 run_fvfm("~/Dropbox/Experiment1/images", output = "results.csv")
 }

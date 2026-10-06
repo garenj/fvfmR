@@ -7,9 +7,10 @@
 #' folder (see \code{\link[reticulate]{virtualenv_root}}) and needs about
 #' 1.5 GB of disk space.
 #'
-#' By default fvfmPy is installed from TestPyPI, and its dependencies from
-#' PyPI. Use \code{source} to install from a downloaded \code{.tar.gz} or
-#' \code{.whl} file instead.
+#' By default the latest release of fvfmPy is installed from PyPI. Use
+#' \code{source} to install from a downloaded \code{.tar.gz} or \code{.whl}
+#' file instead. Running \code{fvfm_setup()} again updates fvfmPy to the
+#' latest release.
 #'
 #' If you already have a Python environment with fvfmPy installed, you can skip
 #' this step and point the package at it with
@@ -20,7 +21,7 @@
 #'   system.
 #' @param source Optional path to a local fvfmPy source (\code{.tar.gz}) or
 #'   wheel (\code{.whl}) file. \code{NULL} (default) installs the latest
-#'   version from TestPyPI.
+#'   release from PyPI.
 #' @param ask Logical. Ask for confirmation before creating or modifying the
 #'   Python environment? Default: \code{TRUE} in interactive sessions.
 #'
@@ -31,7 +32,7 @@
 #' @examples
 #' \dontrun{
 #' fvfm_setup()
-#' fvfm_setup(source = "~/Downloads/fvfmpy-1.0.3.tar.gz")
+#' fvfm_setup(source = "~/Downloads/fvfmpy-1.0.0.tar.gz")
 #' }
 fvfm_setup <- function(python = NULL, source = NULL, ask = interactive()) {
   env_name <- .fvfm_env_name
@@ -62,34 +63,26 @@ fvfm_setup <- function(python = NULL, source = NULL, ask = interactive()) {
   }
 
   message("Installing fvfmPy and its dependencies (this may take a few minutes) ...")
-  if (is.null(source)) {
-    # fvfmPy is only published on TestPyPI. Install its dependencies from PyPI
-    # first so that none of them are resolved from TestPyPI.
-    reticulate::virtualenv_install(
-      env_name,
-      packages = c("numpy", "opencv-python", "scipy", "scikit-image",
-                   "PySide6", "matplotlib", "pandas")
-    )
-    reticulate::virtualenv_install(
-      env_name,
-      packages    = "fvfmPy",
-      pip_options = c("--index-url=https://test.pypi.org/simple/", "--no-deps")
-    )
-  } else {
-    reticulate::virtualenv_install(
-      env_name,
-      packages = normalizePath(source, mustWork = TRUE)
-    )
-  }
+  package <- if (is.null(source)) "fvfmPy" else normalizePath(source, mustWork = TRUE)
+  reticulate::virtualenv_install(env_name, packages = package)
+  # Pre-release builds of fvfmPy on TestPyPI were numbered 1.0.3, higher than
+  # the PyPI releases, so pip would keep them. Reinstall fvfmPy itself (not its
+  # dependencies) so that the requested version is always the one installed.
+  reticulate::virtualenv_install(
+    env_name,
+    packages    = package,
+    pip_options = c("--force-reinstall", "--no-deps")
+  )
 
   python <- reticulate::virtualenv_python(env_name)
   .check_fvfmpy(python)
 
   message(
     "\nSetup complete. fvfmPy is installed in '", env_name, "'.\n",
-    "Analyse a folder of images with:\n",
+    "Start the fvfmPy window with:\n",
     "  library(fvfmR)\n",
-    "  results <- run_fvfm('/path/to/image/folder')"
+    "  results <- run_fvfm()                          # choose a folder in the window\n",
+    "  results <- run_fvfm('/path/to/image/folder')   # or open a folder directly"
   )
   invisible(python)
 }

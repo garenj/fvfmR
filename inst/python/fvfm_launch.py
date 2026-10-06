@@ -25,6 +25,16 @@ class RImageViewer(ImageViewer):
         self.flushed_results = []
         super().__init__(image_folder)
 
+    # With no folder open there is no image to load or analyze; without these
+    # guards, moving a slider or pressing Analyze prints an IndexError
+    def load_image(self, index):
+        if self.image_paths:
+            super().load_image(index)
+
+    def analyze_image(self):
+        if self.image_paths:
+            super().analyze_image()
+
     def save_results(self):
         # Keep a copy in case the user chooses "Clear logged observations"
         pending = list(self.current_results or [])

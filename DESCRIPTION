@@ -25,5 +25,5 @@ Imports:
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-SystemRequirements: Python (>= 3.10), fvfmPy (>= 1.0.3)
+SystemRequirements: Python (>= 3.10), fvfmPy (>= 1.0.0)
 Config/roxygen2/version: 8.0.0
