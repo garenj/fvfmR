@@ -12,8 +12,10 @@ An R wrapper for [fvfmPy](https://github.com/garenj/fvfmPy), which does semi-aut
 remotes::install_github("garenj/fvfmR")
 
 library(fvfmR)
-fvfm_setup()   # once: creates the 'fvfm-env' Python environment and installs fvfmPy
+fvfm_setup()   # once: creates the 'fvfm-env' Python environment and installs fvfmPy from PyPI
 ```
+
+Run `fvfm_setup()` again at any time to update fvfmPy to the latest release.
 
 Requires Python 3.10 or later. If you already have a Python environment with fvfmPy installed, skip `fvfm_setup()` and point to it instead:
 
@@ -38,7 +40,8 @@ results <- run_fvfm(fvfm_example())
 On your own data:
 
 ```r
-results <- run_fvfm("path/to/image/folder")                     # .pim, .tif or .tiff
+results <- run_fvfm()                                           # choose a folder in the window
+results <- run_fvfm("path/to/image/folder")                     # or open one directly (.pim, .tif or .tiff)
 run_fvfm("path/to/image/folder", output = "results.csv")         # also write a CSV
 ```
 

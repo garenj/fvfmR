@@ -5,6 +5,15 @@ test_that("run_fvfm() checks its arguments before starting Python", {
   out <- tempfile(fileext = ".csv")
   file.create(out)
   expect_error(run_fvfm(fvfm_example(), output = out), "already exists")
+  expect_error(run_fvfm(output = out), "already exists")
+})
+
+test_that("run_fvfm() without a directory cleans up its empty folder", {
+  out <- tempfile(fileext = ".csv")
+  file.create(out)
+  before <- list.files(tempdir(), pattern = "^fvfm_no_folder_")
+  expect_error(run_fvfm(output = out), "already exists")
+  expect_setequal(list.files(tempdir(), pattern = "^fvfm_no_folder_"), before)
 })
 
 test_that("fvfmPy can be imported by the configured Python", {
