@@ -19,6 +19,7 @@ License: MIT + file LICENSE
 URL: https://github.com/garenj/fvfmR, https://github.com/garenj/fvfmPy
 BugReports: https://github.com/garenj/fvfmR/issues
 Encoding: UTF-8
+Language: en-GB
 Imports:
     reticulate,
     utils
