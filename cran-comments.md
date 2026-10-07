@@ -5,14 +5,17 @@ This is a new submission.
 ## Test environments
 
 * local macOS (aarch64), R 4.6.0
-* TODO: win-builder (devel and release)
-* TODO: R-hub (linux, windows, macos)
+* GitHub Actions: macOS (R-release), Windows (R-release), Ubuntu (R-devel,
+  R-release, R-oldrel-1)
+* win-builder: R-devel (2026-10-05 r90641 ucrt)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
 * This is a new submission.
+* Possibly misspelled words in DESCRIPTION (Fo, Fv, fluorometer,
+  photosystem): these are correct; see below.
 
 ## Notes for CRAN reviewers
 
@@ -36,4 +39,5 @@ This is a new submission.
 
 * Possibly misspelled words in DESCRIPTION: "Fv", "Fm" and "Fo" are standard
   chlorophyll fluorescence parameters (variable, maximum and minimum
-  fluorescence).
+  fluorescence); "fluorometer" and "photosystem" are standard terms in plant
+  physiology.
